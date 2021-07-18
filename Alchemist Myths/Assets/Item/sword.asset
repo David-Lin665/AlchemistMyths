@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: "\u55AE\u624B\u528D"
   icon: {fileID: 21300000, guid: f0ac434b0dfb1354fb5f52247073edaa, type: 3}
   description: "\u9019\u662F\u4E00\u628A\u666E\u901A\u7684\u55AE\u624B\u528D\n"
-  itemheld: 2
+  itemheld: 6

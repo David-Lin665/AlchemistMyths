@@ -16,10 +16,10 @@ public class InventoryManager : MonoBehaviour
             Destroy(this);
         instance = this;
     }
-    // private void OnEnable() 
-    // {
-    //     RefreshItem();
-    // }
+    private void OnEnable() 
+    {
+        RefreshItem();
+    }
     public static void CreateNewItem(Item item)
     {
         Slot newItem = Instantiate(instance.slotprefab,instance.itemGrid.transform.position,Quaternion.identity);

@@ -10,8 +10,8 @@ public class ItemOnworld : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            AddNewItem();
             Destroy(gameObject);
+            AddNewItem();
         }
     }
     public void AddNewItem()
@@ -22,7 +22,7 @@ public class ItemOnworld : MonoBehaviour
             Debug.Log("New Item added"); 
         }else
         {
-            thisitem.itemheld++;
+            thisitem.itemheld+=1;
             Debug.Log("count+1");
         }
         InventoryManager.RefreshItem();
