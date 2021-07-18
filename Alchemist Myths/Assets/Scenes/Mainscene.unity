@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 173912964}
   - component: {fileID: 173912962}
   - component: {fileID: 173912968}
-  - component: {fileID: 173912969}
   - component: {fileID: 173912967}
   - component: {fileID: 173912961}
   - component: {fileID: 173912963}
@@ -198,7 +197,7 @@ MonoBehaviour:
   speed: 8
   jumpforce: 10
   groundcheck: {fileID: 1515603990}
-  checkRadius: 0.25
+  checkRadius: 0.3
   whatisGround:
     serializedVersion: 2
     m_Bits: 128
@@ -317,28 +316,6 @@ MonoBehaviour:
   manaBar: {fileID: 1045225589}
   currentHealth: 0
   currentMana: 0
---- !u!114 &173912969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173912960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d615cfa1d4d3524495c4d42c99e51ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  jumpforce: 6
-  groundcheck: {fileID: 1515603990}
-  checkRadius: 0.5
-  whatisGround:
-    serializedVersion: 2
-    m_Bits: 128
-  extrajumps: 2
-  noFriction: {fileID: 0}
-  fullFriction: {fileID: 0}
 --- !u!1 &234927691
 GameObject:
   m_ObjectHideFlags: 0
