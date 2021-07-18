@@ -11,6 +11,7 @@ public class ItemOnworld : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             AddNewItem();
+            Destroy(gameObject);
         }
     }
     public void AddNewItem()

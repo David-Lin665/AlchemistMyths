@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 173912961}
   m_Layer: 6
   m_Name: "\u4E3B\u89D2"
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -621,7 +621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173912960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.38, y: 2.64, z: 0}
+  m_LocalPosition: {x: 1.23, y: -0.25, z: 0}
   m_LocalScale: {x: 0.39361, y: 0.39361, z: 0.39361}
   m_Children:
   - {fileID: 617302770}
@@ -7468,7 +7468,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1515603989}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.68, z: 0}
+  m_LocalPosition: {x: -0.15, y: -1.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 173912965}
