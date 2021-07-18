@@ -19,6 +19,11 @@ public class InventoryManager : MonoBehaviour
     private void OnEnable() 
     {
         RefreshItem();
+        instance.description.text = "";
+    }
+    public static void UpdateItemInfo(string iteminfo)
+    {
+        instance.description.text = iteminfo;
     }
     public static void CreateNewItem(Item item)
     {
