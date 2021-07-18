@@ -19,10 +19,12 @@ public class ItemOnworld : MonoBehaviour
         if(!playerInventory.itemList.Contains(thisitem))
         {
             playerInventory.itemList.Add(thisitem);
-            InventoryManager.CreateNewItem(thisitem);
+            Debug.Log("New Item added"); 
         }else
         {
             thisitem.itemheld++;
+            Debug.Log("count+1");
         }
+        InventoryManager.RefreshItem();
     }
 }
