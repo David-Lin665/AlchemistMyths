@@ -13,21 +13,24 @@ public class PlayerController : MonoBehaviour
     public Transform groundcheck;
     public float checkRadius;
     public LayerMask whatisGround;
-    public int extrajumps;
-    int jumps;
+    public int extrajumps;//多段跳次數
+    [SerializeField] private int jumps;
 
-    private CapsuleCollider2D cc;
-    private Vector2 colliderSize;
-    private float slopeDownAngle;
+    private CapsuleCollider2D cc;//接觸地面的人物碰撞箱
+    private Vector2 colliderSize;//碰撞箱體積
+    private float slopeDownAngle;//
     private Vector2 slopeNormalPerp;
-    private bool isOnSlope;
+    private bool isOnSlope;//是否在斜坡上
     private float slopeDownAngleOld;
     private Vector2 newVelocity;
+    private Vector2 newForce;
     private float slopeSideAngle;
     [SerializeField] private PhysicsMaterial2D noFriction;
     [SerializeField] private PhysicsMaterial2D fullFriction;
     private bool isjumping;
-    //[SerializeField] private float 
+    [SerializeField] private float maxSlopeAngle;
+    private bool canWalkOnSlope;
+    
 
     void Start()
     {
@@ -53,22 +56,23 @@ public class PlayerController : MonoBehaviour
 
     void Update()//跳躍
     {
-        if(isGrounded==true){//若玩家接觸地板
+        if(isGrounded==true && rb.velocity.y <=0.0f){//若玩家接觸地板
             jumps = extrajumps;
             isjumping = false;
-            //Debug.Log("isjumping=false");
+            //Debug.Log("isGrounded=true");
         }
         if(Input.GetKeyDown(KeyCode.Space)&&jumps>0){//多段跳
             isjumping = true;
             rb.velocity = Vector2.up*jumpforce;
             jumps--;
+
             //Debug.Log("isjumping=true");
         }
     }
-    void OnDrawGizmosSelected(){//groundCheck範圍顯示
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireSphere(groundcheck.position,checkRadius);
-    }
+    // void OnDrawGizmosSelected(){//groundCheck範圍顯示
+    //     Gizmos.color = Color.white;
+    //     Gizmos.DrawWireSphere(groundcheck.position,checkRadius);
+    // }
     void flip()//翻轉
     {
         facingRight = !facingRight;
@@ -78,7 +82,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void SlopeCheck(){//檢查斜坡
-        Vector2 checkPos = transform.position - new Vector3(0.0f,colliderSize.y / 2);
+        Vector2 checkPos = transform.position - new Vector3(0.0f,colliderSize.y/2);
         SlopeCheckHoirzontal(checkPos);
         SlopeCheckVertical(checkPos);
     }
@@ -86,7 +90,7 @@ public class PlayerController : MonoBehaviour
     private void SlopeCheckHoirzontal(Vector2 checkPos){//斜坡X軸
         RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos,transform.right,checkRadius,whatisGround);
         RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos,-transform.right,checkRadius,whatisGround);
-        if(slopeHitFront){//前方斜坡
+        if(slopeHitFront){//前方偵測斜坡
             slopeSideAngle = Vector2.Angle(slopeHitFront.normal,Vector2.up);
             if(slopeSideAngle ==90f){//平地
                 isOnSlope = false;
@@ -94,22 +98,20 @@ public class PlayerController : MonoBehaviour
                 isOnSlope = true;
             }
         }
-        else if(slopeHitBack){//後方斜坡
+        else if(slopeHitBack){//後方偵測斜坡
             slopeSideAngle = Vector2.Angle(slopeHitBack.normal,Vector2.up);
             if(slopeSideAngle ==90f){//平地
                 isOnSlope = false;
             }else{
                 isOnSlope = true;
             }
-        }else{
-            slopeSideAngle = 0.0f;
-            isOnSlope = false;
         }
     }
     
     private void SlopeCheckVertical(Vector2 checkPos){//斜坡Y軸
         RaycastHit2D hit = Physics2D.Raycast(checkPos,Vector2.down,checkRadius,whatisGround);
-
+        //Debug.Log(checkPos);
+        //Debug.Log(groundcheck.position);
         if(hit){
             slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
             slopeDownAngle = Vector2.Angle(hit.normal,Vector2.up);
@@ -119,11 +121,17 @@ public class PlayerController : MonoBehaviour
             }
             slopeDownAngleOld = slopeDownAngle;
 
-            //Debug.DrawRay(hit.point,slopeNormalPerp,Color.red);
-            //Debug.DrawRay(hit.point,hit.normal,Color.green);
+            Debug.DrawRay(hit.point,slopeNormalPerp,Color.red);
+            Debug.DrawRay(hit.point,hit.normal,Color.green);
         }
 
-        if(isOnSlope && moveInput == 0.0f){
+        if(slopeDownAngle > maxSlopeAngle || slopeSideAngle >maxSlopeAngle){//斜坡是否太陡
+            canWalkOnSlope = false;
+        }else{
+            canWalkOnSlope = true;
+        }
+
+        if(isOnSlope && moveInput == 0.0f && canWalkOnSlope){//定在斜坡上
             rb.sharedMaterial = fullFriction;
         }else{
             rb.sharedMaterial = noFriction;
@@ -132,24 +140,21 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement(){//移動
         moveInput = Input.GetAxis("Horizontal");
-        
-        newVelocity.Set(speed*moveInput,rb.velocity.y);
-        rb.velocity = newVelocity;
 
         if(isGrounded && !isOnSlope && !isjumping){//平地
             newVelocity.Set(moveInput*speed,0.0f);
             rb.velocity = newVelocity;
-            //Debug.Log("flat");
+            //Debug.Log(moveInput);
         }
-        else if(isGrounded && isOnSlope && !isjumping){//斜坡
+        else if(isGrounded && isOnSlope && !isjumping && canWalkOnSlope){//斜坡
             newVelocity.Set(speed * slopeNormalPerp.x * -moveInput , speed*slopeNormalPerp.y*-moveInput);
             rb.velocity = newVelocity;
-            //Debug.Log("slope");
+            //Debug.Log(moveInput);
         }
-        else if(!isGrounded){//空中
-            rb.velocity = new Vector2(moveInput*speed, rb.velocity.y);
+        else if(!isGrounded && isjumping){//空中
+            newVelocity = new Vector2(moveInput*speed, rb.velocity.y);
             rb.velocity = newVelocity;
-            //Debug.Log("air");
+            //Debug.Log(moveInput);
         }
     }
 }
