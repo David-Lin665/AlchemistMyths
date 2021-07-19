@@ -7,9 +7,10 @@ public class InventoryManager : MonoBehaviour
 {
     static InventoryManager instance;
     public Inventory backpack;
-    public GameObject itemGrid;
-    public Slot slotprefab;
+    public GameObject slotGrid;
+    public GameObject emptyslot;
     public Text description;
+    public List<GameObject> slots = new List<GameObject>();
     void Awake()
     {
         if(instance != null)
@@ -25,25 +26,28 @@ public class InventoryManager : MonoBehaviour
     {
         instance.description.text = iteminfo;
     }
-    public static void CreateNewItem(Item item)
+    /*public static void CreateNewItem(Item item)
     {
         Slot newItem = Instantiate(instance.slotprefab,instance.itemGrid.transform.position,Quaternion.identity);
         newItem.gameObject.transform.SetParent(instance.itemGrid.transform);
         newItem.slotItem = item;
         newItem.slotImage.sprite = item.icon;
         newItem.slotnum.text = item.itemheld.ToString();
-    }
+    }*/
     public static void RefreshItem()
     {
-        for(int i = 0; i<instance.itemGrid.transform.childCount;i++)
+        for(int i = 0; i<instance.slotGrid.transform.childCount;i++)
         {
-            if(instance.itemGrid.transform.childCount == 0)
+            if(instance.slotGrid.transform.childCount == 0)
                 break;
-            Destroy(instance.itemGrid.transform.GetChild(i).gameObject);
+            Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
+            instance.slots.Clear();
         }
         for(int i = 0; i<instance.backpack.itemList.Count; i++)
         {
-            CreateNewItem(instance.backpack.itemList[i]);
+            instance.slots.Add(Instantiate(instance.emptyslot));
+            instance.slots[i].transform.SetParent(instance.slotGrid.transform);
+            instance.slots[i].GetComponent<Slot>().SetSlot(instance.backpack.itemList[i]);
         }
     }
 }

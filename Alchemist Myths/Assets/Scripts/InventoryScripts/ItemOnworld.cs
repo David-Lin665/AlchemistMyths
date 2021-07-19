@@ -18,7 +18,14 @@ public class ItemOnworld : MonoBehaviour
     {
         if(!playerInventory.itemList.Contains(thisitem))
         {
-            playerInventory.itemList.Add(thisitem);
+            for(int i = 0; i< playerInventory.itemList.Count; i++)
+            {
+                if(playerInventory.itemList[i] == null)
+                {
+                    playerInventory.itemList[i] = thisitem;
+                    break;
+                }
+            }
             Debug.Log("New Item added"); 
         }else
         {
