@@ -9,9 +9,8 @@ public class DestructSpawn : MonoBehaviour
     public Tilemap destructibleTilemap;
     public LayerMask targetLayerMask;
     public float health = 10;
-    public float damage = 2;
+    public GameObject mine;
     private RaycastHit2D hit;
-    private Vector3 mouseWorldPosition;
     private Color tileColor;
     private void Awake() 
     {
@@ -20,27 +19,32 @@ public class DestructSpawn : MonoBehaviour
     void Start()
     {
         StartCoroutine(BreakBlocks());
+        tileColor = Color.white;
     }
     void Update()
     {
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = Camera.main.nearClipPlane;
-        mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         hit = Physics2D.Raycast(new Vector2(mouseWorldPosition.x,mouseWorldPosition.y),Vector2.zero,0,targetLayerMask);
         if(health <= 0)
+        {
             destructibleTilemap.SetTile(destructibleTilemap.WorldToCell(mouseWorldPosition),null);
+            Instantiate(mine,mouseWorldPosition,Quaternion.identity);
+            health = 10;
+            //destructibleTilemap.SetColor(destructibleTilemap.WorldToCell(mouseWorldPosition), Color.red); this is not working
+        }
     }
     
     IEnumerator BreakBlocks()
     {
-        tileColor = destructibleTilemap.GetColor(destructibleTilemap.WorldToCell(mouseWorldPosition));
         while (true)
         {
             yield return new WaitUntil(()=>hit&&Input.GetMouseButton(0));
             health--;
             Debug.Log(health);
             yield return StartCoroutine(Fade());
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.6f);
         }
     }
 
@@ -48,7 +52,6 @@ public class DestructSpawn : MonoBehaviour
     {
         tileColor.a -= 0.1f;
         Debug.Log(tileColor);
-        destructibleTilemap.SetColor(destructibleTilemap.WorldToCell(mouseWorldPosition),tileColor);
         yield return null;
     }
         
