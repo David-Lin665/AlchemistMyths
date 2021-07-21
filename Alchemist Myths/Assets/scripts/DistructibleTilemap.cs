@@ -11,7 +11,6 @@ public class DistructibleTilemap : MonoBehaviour
     void Start()
     {
         destructableTilemap = GetComponent<Tilemap>();
-
     }
     void Update()
     {
@@ -21,7 +20,8 @@ public class DistructibleTilemap : MonoBehaviour
         layermask = LayerMask.GetMask("Ground");
         RaycastHit2D hitData = Physics2D.Raycast(new Vector2(worldposition.x,worldposition.y),Vector2.zero,0,layermask);
         if(hitData&&Input.GetMouseButtonDown(0)){
-            destructableTilemap.SetTile(destructableTilemap.WorldToCell(worldposition),null);
+            Debug.Log("tile destroy");
+            //destructableTilemap.SetTile(destructableTilemap.WorldToCell(worldposition),null);
         }
 
     }
