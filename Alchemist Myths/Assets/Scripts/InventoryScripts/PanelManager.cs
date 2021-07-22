@@ -7,7 +7,7 @@ public class PanelManager : MonoBehaviour
     public GameObject inventoryPanel;
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab)) // if i press Tab
+        if(Input.GetKeyDown(KeyCode.P)) // if i press Tab
         {
             inventoryPanel.SetActive(!inventoryPanel.gameObject.activeSelf); // set active or inactive
         }

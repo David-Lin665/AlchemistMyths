@@ -38,8 +38,6 @@ public class InventoryManager : MonoBehaviour
     {
         for(int i = 0; i<instance.slotGrid.transform.childCount;i++)
         {
-            if(instance.slotGrid.transform.childCount == 0)
-                break;
             Destroy(instance.slotGrid.transform.GetChild(i).gameObject);
             instance.slots.Clear();
         }
@@ -47,6 +45,7 @@ public class InventoryManager : MonoBehaviour
         {
             instance.slots.Add(Instantiate(instance.emptyslot));
             instance.slots[i].transform.SetParent(instance.slotGrid.transform);
+            instance.slots[i].GetComponent<Slot>().slotID = i;
             instance.slots[i].GetComponent<Slot>().SetSlot(instance.backpack.itemList[i]);
         }
     }
