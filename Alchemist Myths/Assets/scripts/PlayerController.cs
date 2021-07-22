@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundcheck;
     public float checkRadius;
     public LayerMask whatisGround;
-    public int extrajumps;//多段跳次數
+    public int extrajumps;
     [SerializeField] private int jumps;
 
     private CapsuleCollider2D cc;//接觸地面的人物碰撞箱
@@ -56,11 +56,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()//跳躍
     {
-        if(isGrounded==true && rb.velocity.y <=0.0f){//若玩家接觸地板
+        if(isGrounded==true){//若玩家接觸地板
             jumps = extrajumps;
             isjumping = false;
-            //Debug.Log("isGrounded=true");
+            //Debug.Log("isjumping=false");
         }
+
         if(Input.GetKeyDown(KeyCode.Space)&&jumps>0){//多段跳
             isjumping = true;
             rb.velocity = Vector2.up*jumpforce;
@@ -69,10 +70,10 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("isjumping=true");
         }
     }
-    // void OnDrawGizmosSelected(){//groundCheck範圍顯示
-    //     Gizmos.color = Color.white;
-    //     Gizmos.DrawWireSphere(groundcheck.position,checkRadius);
-    // }
+    void OnDrawGizmosSelected(){//groundCheck範圍顯示
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(groundcheck.position,checkRadius);
+    }
     void flip()//翻轉
     {
         facingRight = !facingRight;
@@ -105,6 +106,9 @@ public class PlayerController : MonoBehaviour
             }else{
                 isOnSlope = true;
             }
+        }else{
+            slopeSideAngle = 0.0f;
+            isOnSlope = false;
         }
     }
     
@@ -144,17 +148,17 @@ public class PlayerController : MonoBehaviour
         if(isGrounded && !isOnSlope && !isjumping){//平地
             newVelocity.Set(moveInput*speed,0.0f);
             rb.velocity = newVelocity;
-            //Debug.Log(moveInput);
+            Debug.Log(moveInput);
         }
         else if(isGrounded && isOnSlope && !isjumping && canWalkOnSlope){//斜坡
             newVelocity.Set(speed * slopeNormalPerp.x * -moveInput , speed*slopeNormalPerp.y*-moveInput);
             rb.velocity = newVelocity;
             //Debug.Log(moveInput);
         }
-        else if(!isGrounded && isjumping){//空中
+        else if(!isGrounded){//空中
             newVelocity = new Vector2(moveInput*speed, rb.velocity.y);
             rb.velocity = newVelocity;
-            //Debug.Log(moveInput);
+            Debug.Log(moveInput);
         }
     }
 }
