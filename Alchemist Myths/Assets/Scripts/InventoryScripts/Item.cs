@@ -9,4 +9,5 @@ public class Item : ScriptableObject
     [TextArea]
     public string description;
     public int itemheld;
+    public GameObject itemPrefab;
 }

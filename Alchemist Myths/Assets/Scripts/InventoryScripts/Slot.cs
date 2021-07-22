@@ -24,7 +24,7 @@ public class Slot : MonoBehaviour
             itemInSlot.SetActive(false);
             return;
         }
-
+        slotItem = item;
         slotImage.sprite = item.icon;
         slotnum.text = item.itemheld.ToString();
         slotInfo = item.description;

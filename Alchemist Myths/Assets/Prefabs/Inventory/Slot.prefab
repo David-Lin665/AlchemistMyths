@@ -370,6 +370,8 @@ MonoBehaviour:
   originalParent: {fileID: 0}
   backpack: {fileID: 11400000, guid: 5f0246a8d20f91d4d921e3bcc52e8a53, type: 2}
   currentID: 0
+  playerTransform: {fileID: 414220910814394813, guid: c5a5b6bb12cd14548aa47b525952ef19, type: 3}
+  itemdroped: {fileID: 0}
 --- !u!225 &8563825751577231875
 CanvasGroup:
   m_ObjectHideFlags: 0
