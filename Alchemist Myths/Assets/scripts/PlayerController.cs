@@ -148,7 +148,7 @@ public class PlayerController : MonoBehaviour
         if(isGrounded && !isOnSlope && !isjumping){//平地
             newVelocity.Set(moveInput*speed,0.0f);
             rb.velocity = newVelocity;
-            Debug.Log(moveInput);
+            //Debug.Log(moveInput);
         }
         else if(isGrounded && isOnSlope && !isjumping && canWalkOnSlope){//斜坡
             newVelocity.Set(speed * slopeNormalPerp.x * -moveInput , speed*slopeNormalPerp.y*-moveInput);
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
         else if(!isGrounded){//空中
             newVelocity = new Vector2(moveInput*speed, rb.velocity.y);
             rb.velocity = newVelocity;
-            Debug.Log(moveInput);
+            //Debug.Log(moveInput);
         }
     }
 }
