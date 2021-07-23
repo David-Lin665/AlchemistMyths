@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()//跳躍
     {
-        if(isGrounded==true){//若玩家接觸地板
+        if(isGrounded==true && rb.velocity.y <=0.0f){//若玩家接觸地板
             jumps = extrajumps;
             isjumping = false;
             //Debug.Log("isjumping=false");

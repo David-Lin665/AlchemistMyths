@@ -7114,21 +7114,13 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6839905687667703457, guid: aaebb52956efee245a0fa975f48632fc, type: 3}
-      propertyPath: currentMana
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6839905687667703457, guid: aaebb52956efee245a0fa975f48632fc, type: 3}
-      propertyPath: currentHealth
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 6839905687667703465, guid: aaebb52956efee245a0fa975f48632fc, type: 3}
       propertyPath: m_Name
       value: "\u4E3B\u89D2 (1)"
       objectReference: {fileID: 0}
     - target: {fileID: 6839905687667703466, guid: aaebb52956efee245a0fa975f48632fc, type: 3}
       propertyPath: extrajumps
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6839905687667703468, guid: aaebb52956efee245a0fa975f48632fc, type: 3}
       propertyPath: m_RootOrder
