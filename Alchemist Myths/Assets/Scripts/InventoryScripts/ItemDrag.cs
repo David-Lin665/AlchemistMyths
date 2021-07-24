@@ -8,7 +8,6 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Transform originalParent;
     public Inventory backpack; // get the refernce of the backpack
     public int currentID;// 當前物品的slot id
-    public Transform playerTransform;
     public GameObject itemdroped;
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -63,9 +62,8 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void DropItemtoWorld()
     {
-        Vector3 dropPosistion = playerTransform.position + new Vector3(5,0,0);
         itemdroped = Instantiate(backpack.itemList[currentID].itemPrefab);
-        itemdroped.transform.position = dropPosistion;
+        itemdroped.transform.position = PlayerTracker.playerPosition + new Vector3(5,0,0);
         backpack.itemList[currentID] = null;
         InventoryManager.RefreshItem();
     }
