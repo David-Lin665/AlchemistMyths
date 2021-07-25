@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Melee
   - Projectile
+  - ItemImage
+  - Slot
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - BG
   - Weapon
   - Enemy
-  - 
+  - Destructible
   - 
   - 
   - 
@@ -42,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Sprite
+    uniqueID: 1024363923
     locked: 0
