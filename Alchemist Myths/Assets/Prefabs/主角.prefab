@@ -575,9 +575,10 @@ GameObject:
   - component: {fileID: 6839905687667703464}
   - component: {fileID: 6839905687667703466}
   - component: {fileID: 6839905687667703471}
+  - component: {fileID: 9008460389172597404}
   m_Layer: 6
   m_Name: "\u4E3B\u89D2"
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -746,6 +747,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.023061043, y: -0.09224371}
   m_Size: {x: 0.9537237, y: 1.3688189}
   m_Direction: 0
+--- !u!114 &9008460389172597404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6839905687667703465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ecbcb96e3a2564fbbfd22efd3efdb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6839905687737629538
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -254.91206, y: 168.04498}
+  m_AnchoredPosition: {x: -572, y: 327}
   m_SizeDelta: {x: 308.1759, y: 15.91}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6839905687810622406
@@ -1298,7 +1311,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -254.91206, y: 150.90326}
+  m_AnchoredPosition: {x: -574, y: 310}
   m_SizeDelta: {x: 308.18, y: 7.0841}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6839905688538983775
