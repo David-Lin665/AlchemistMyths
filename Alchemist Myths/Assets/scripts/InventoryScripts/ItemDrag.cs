@@ -8,7 +8,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Transform originalParent;
     public Inventory backpack; // get the refernce of the backpack
     public int currentID;// 當前物品的slot id
-    public GameObject itemdroped;
+    private GameObject itemdroped;
     public void OnBeginDrag(PointerEventData eventData)
     {
         originalParent = transform.parent;// item 的上級是 slot
@@ -20,7 +20,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position; // 拖曳期間
+        transform.position = eventData.position; // 拖曳期間持續更新位置
         //Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
     }
 
@@ -28,24 +28,28 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if(eventData.pointerCurrentRaycast.gameObject != null)
         {
+            //如果放在另一個物品上
             if(eventData.pointerCurrentRaycast.gameObject.tag == "ItemImage")
             {
+                //調換兩物品位置
                 transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent); // Image 的上層是Item 再上層是 Slot
                 transform.position = eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.position;
                 eventData.pointerCurrentRaycast.gameObject.transform.parent.SetParent(originalParent); // Image 的上層 Item 設slot為parent
                 eventData.pointerCurrentRaycast.gameObject.transform.parent.position = originalParent.transform.position;
-                // 兩物品id的調換
+                // 兩物品調換在背包裡的順序
                 var temp = backpack.itemList[currentID];
                 backpack.itemList[currentID] = backpack.itemList[eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<Slot>().slotID];
                 backpack.itemList[eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<Slot>().slotID] = temp;
                 GetComponent<CanvasGroup>().blocksRaycasts = true;
                 return;
             }
+            //如果放在空格上
             else if(eventData.pointerCurrentRaycast.gameObject.tag == "Slot")
             {
+                //把它放進新空格
                 transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform); // 直接setparent
                 transform.position = eventData.pointerCurrentRaycast.gameObject.transform.position;
-                //把物品調換到空格
+                //把空格跟當前物品在背包裡的順序調換
                 backpack.itemList[eventData.pointerCurrentRaycast.gameObject.GetComponent<Slot>().slotID] = backpack.itemList[currentID];
                 // 要判斷是否放在自己的位置
                 if(currentID != eventData.pointerCurrentRaycast.gameObject.GetComponent<Slot>().slotID)
@@ -54,6 +58,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 return;
             }
         }
+        //如果放在背包外
         if(eventData.pointerCurrentRaycast.gameObject == null)
         {
             DropItemtoWorld();

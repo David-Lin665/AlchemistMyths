@@ -11,7 +11,6 @@ public class Slot : MonoBehaviour
     public Text slotnum;
     public GameObject itemInSlot;
     public string slotInfo;
-
     public void SlotOnclick()
     {
         InventoryManager.UpdateItemInfo(slotInfo);
@@ -19,11 +18,14 @@ public class Slot : MonoBehaviour
 
     public void SetSlot(Item item)
     {
+        // 如果是空格
         if(item == null)
         {
+            //把圖片隱藏
             itemInSlot.SetActive(false);
             return;
         }
+        //如果不是空格，就把訊息更新
         slotItem = item;
         slotImage.sprite = item.icon;
         slotnum.text = item.itemheld.ToString();
