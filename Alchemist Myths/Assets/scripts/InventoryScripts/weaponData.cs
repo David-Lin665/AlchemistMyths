@@ -23,7 +23,9 @@ public class weaponData : MonoBehaviour
     }
 
     void Start(){
+        collider = GetComponent<BoxCollider2D>();
         collider.enabled = false;
+
     }
 
     void Update(){
@@ -34,4 +36,4 @@ public class weaponData : MonoBehaviour
             }     
         }
     }
-}   
+}  
