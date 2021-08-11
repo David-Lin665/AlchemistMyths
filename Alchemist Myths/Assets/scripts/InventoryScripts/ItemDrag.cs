@@ -9,6 +9,8 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Inventory backpack; // get the refernce of the backpack
     public int currentID;// 當前物品的slot id
     private GameObject itemdroped;
+    public Item currentItem;
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
         originalParent = transform.parent;// item 的上級是 slot
@@ -16,12 +18,13 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         transform.SetParent(transform.parent.parent);//點擊時把層級上移到slotgrid避免被擋住
         transform.position = eventData.position; 
         GetComponent<CanvasGroup>().blocksRaycasts = false; // 使他不會擋住raycast
+        currentItem = backpack.itemList[currentID];
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position; // 拖曳期間持續更新位置
-        //Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
+        Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -44,7 +47,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 return;
             }
             //如果放在空格上
-            else if(eventData.pointerCurrentRaycast.gameObject.tag == "Slot")
+            if(eventData.pointerCurrentRaycast.gameObject.tag == "Slot")
             {
                 //把它放進新空格
                 transform.SetParent(eventData.pointerCurrentRaycast.gameObject.transform); // 直接setparent
@@ -55,6 +58,14 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 if(currentID != eventData.pointerCurrentRaycast.gameObject.GetComponent<Slot>().slotID)
                     backpack.itemList[currentID] = null;
                 GetComponent<CanvasGroup>().blocksRaycasts = true;
+                return;
+            }
+            if(eventData.pointerCurrentRaycast.gameObject.name == "Armor")
+            {
+                transform.SetParent(originalParent);
+                transform.position = originalParent.position;
+                GetComponent<CanvasGroup>().blocksRaycasts = true;
+                gameObject.SetActive(false);
                 return;
             }
         }

@@ -10,4 +10,8 @@ public class Item : ScriptableObject
     public string description;
     public int itemheld;
     public GameObject itemPrefab;
+    public bool isWeapon;
+    [Header("Weapon status")]
+    public int atk;
+    public int def;
 }
