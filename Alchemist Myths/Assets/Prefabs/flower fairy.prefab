@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6362013205695786181}
   - component: {fileID: 6590266192678791872}
   - component: {fileID: 1867568919026219566}
+  - component: {fileID: 4049441796120583460}
   m_Layer: 0
   m_Name: flower fairy
   m_TagString: Untagged
@@ -129,6 +130,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4049441796120583460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091372937978965981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36b14bf51ecccf48b0a2196d84f939a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDistance: 0
+  leftLimit: {fileID: 0}
+  rightLimit: {fileID: 0}
+  intTimer: 0
+  target: {fileID: 0}
+  inRange: 0
+  hotZone: {fileID: 0}
+  triggerArea: {fileID: 0}
 --- !u!1 &2307391118010485541
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +245,7 @@ GameObject:
   - component: {fileID: 8449206807583321297}
   - component: {fileID: 5988960196771712419}
   - component: {fileID: 1681711443410973690}
+  - component: {fileID: 4630574380333309109}
   m_Layer: 0
   m_Name: triggerArea
   m_TagString: Untagged
@@ -283,6 +305,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.0593157, y: 3.7568345}
   m_EdgeRadius: 0
+--- !u!114 &4630574380333309109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011455440960563441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a4b4b5f7e334bd488f48dec1ff5bf10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7459415484527925849
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +440,7 @@ GameObject:
   - component: {fileID: 8701158211659211275}
   - component: {fileID: 1479971622774389395}
   - component: {fileID: 8707650045543270271}
+  - component: {fileID: 6526112507829591026}
   m_Layer: 0
   m_Name: hotZone
   m_TagString: Untagged
@@ -465,3 +500,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.682561, y: 19.121841}
   m_EdgeRadius: 0
+--- !u!114 &6526112507829591026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8422448233521443361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc2fca6e82320440b9285a49573dcf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
