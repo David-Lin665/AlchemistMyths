@@ -7,13 +7,16 @@ public class ItemOnworld : MonoBehaviour
 {
     public Item thisitem;
     public Inventory playerInventory;
-    void OnTriggerEnter2D(Collider2D other)// call when other collider enters the zone
+    void OnTriggerStay2D(Collider2D other)// call when other collider enters the zone
     {
         // 判斷是不是主角碰到
         if(other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
-            AddNewItem();
+            if(Input.GetKey(KeyCode.S))
+            {
+                Destroy(gameObject);
+                AddNewItem();  
+            }
         }
     }
     public void AddNewItem()

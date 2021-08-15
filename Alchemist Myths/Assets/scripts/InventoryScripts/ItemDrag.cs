@@ -8,7 +8,6 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public Transform originalParent;
     public Inventory backpack; // get the refernce of the backpack
     public int currentID;// 當前物品的slot id
-    private GameObject itemdroped;
     public Item currentItem;
     
     public void OnBeginDrag(PointerEventData eventData)
@@ -24,7 +23,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position; // 拖曳期間持續更新位置
-        Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
+        //Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -60,28 +59,35 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 GetComponent<CanvasGroup>().blocksRaycasts = true;
                 return;
             }
+            // 裝備armor
             if(eventData.pointerCurrentRaycast.gameObject.name == "Armor")
             {
-                transform.SetParent(originalParent);
-                transform.position = originalParent.position;
-                GetComponent<CanvasGroup>().blocksRaycasts = true;
-                gameObject.SetActive(false);
+                if(currentItem.itemName.Contains("護甲"))
+                {
+                    backpack.itemList[currentID] = null;
+                    Destroy(gameObject);
+                    GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    return;
+                }
+                ReturnItem();
                 return;
             }
+            ReturnItem();
+            return;
         }
         //如果放在背包外
         if(eventData.pointerCurrentRaycast.gameObject == null)
         {
-            DropItemtoWorld();
+            Destroy(gameObject);
+            Instantiate(backpack.itemList[currentID].itemPrefab,PlayerTracker.playerPosition + new Vector3(5,0,0),Quaternion.identity);
+            backpack.itemList[currentID] = null;
+            InventoryManager.RefreshItem();
         } 
     }
-
-    public void DropItemtoWorld()
+    public void ReturnItem()
     {
-        itemdroped = Instantiate(backpack.itemList[currentID].itemPrefab);
-        itemdroped.transform.position = PlayerTracker.playerPosition + new Vector3(5,0,0);
-        backpack.itemList[currentID] = null;
-        InventoryManager.RefreshItem();
-    }
-        
+        transform.SetParent(originalParent);
+        transform.position = originalParent.position;
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }        
 }

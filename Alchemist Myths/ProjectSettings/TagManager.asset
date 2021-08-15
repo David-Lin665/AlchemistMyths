@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Melee
   - Projectile
+  - Slot
+  - ItemImage
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - UI
   - player
   - Ground
-  - BG
+  - Item
   - Weapon
   - Enemy
   - 
