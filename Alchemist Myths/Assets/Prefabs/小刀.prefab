@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9075593750981418861}
   - component: {fileID: 9075593750981418858}
   - component: {fileID: 9075593750981418859}
-  - component: {fileID: 9075593750981418856}
   m_Layer: 0
   m_Name: "\u5C0F\u5200"
   m_TagString: Untagged
@@ -125,18 +124,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisitem: {fileID: 11400000, guid: dcae863da43dc984198649d7956a99c8, type: 2}
   playerInventory: {fileID: 11400000, guid: eb64b3f5042a8d345b928571287e46dd, type: 2}
---- !u!114 &9075593750981418856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9075593750981418857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0ebf7096aec2b43a8c9ba711305f4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRate: 0.5
-  damage: 5
-  collider: {fileID: 0}
