@@ -17,3 +17,12 @@ MonoBehaviour:
   description: "\u9019\u662F\u4E00\u628A\u666E\u901A\u7684\u55AE\u624B\u528D\n"
   itemheld: 1
   itemPrefab: {fileID: 979683295200713798, guid: 9543146f7c692ab428d2e1949e2e4faf, type: 3}
+  isWeapon: 1
+  atk: 10
+  WeaponEffect: 0
+  attackSpeed: 0.5
+  Weapontag: Melee
+  isArmor: 0
+  def: 0
+  ArmorEffect: 0
+  Armortag: 

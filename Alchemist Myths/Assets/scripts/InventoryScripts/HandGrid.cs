@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemDrop : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class HandGrid : MonoBehaviour, IDropHandler
 {
-    public Image armorimage;
+    public Image itemImage;
     private Sprite initsprite;
     private Color initColor;
     public Inventory backpack;
     public Item currentEquip;
     private Transform initparent;
+    public GameObject connectToUI;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         initparent = transform.parent;
-        if(armorimage.sprite != initsprite)
+        if(itemImage.sprite != initsprite)
         {
             transform.SetParent(transform.parent.parent.parent);
             transform.position = eventData.position;
@@ -29,15 +30,14 @@ public class ItemDrop : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
         transform.position = eventData.position;
     }
 
-    public void OnDrop(PointerEventData eventData)/////////////////
+    public void OnDrop(PointerEventData eventData)
     {
-        if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.itemName.Contains("護甲"))
-        {
-            currentEquip = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem;
-            armorimage.sprite = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.icon;
-            armorimage.color = Color.white;
-        }
+        currentEquip = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem;
+        itemImage.sprite = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.icon;
+        itemImage.color = Color.white;
 
+        connectToUI.GetComponent<Image>().sprite = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.icon;
+        connectToUI.GetComponent<Image>().color = Color.white;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -79,16 +79,17 @@ public class ItemDrop : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
     }
     void Awake()
     {
-        armorimage = GetComponent<Image>();
-        initsprite = armorimage.sprite;
+        itemImage = GetComponent<Image>();
+        initsprite = itemImage.sprite;
         currentEquip = null;
-        initColor = armorimage.color;
+        initColor = itemImage.color;
     }
     void controlZ()
     {
-        armorimage.sprite = initsprite;
-        armorimage.color = initColor;
+        itemImage.sprite = initsprite;
+        itemImage.color = initColor;
         transform.SetParent(initparent);
         transform.position = initparent.position;
     }
+
 }

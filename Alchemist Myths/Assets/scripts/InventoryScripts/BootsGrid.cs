@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemDrop : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class BootsGrid : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public Image armorimage;
     private Sprite initsprite;
@@ -29,15 +29,14 @@ public class ItemDrop : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
         transform.position = eventData.position;
     }
 
-    public void OnDrop(PointerEventData eventData)/////////////////
+    public void OnDrop(PointerEventData eventData)
     {
-        if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.itemName.Contains("護甲"))
-        {
-            currentEquip = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem;
-            armorimage.sprite = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.icon;
-            armorimage.color = Color.white;
-        }
-
+       if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.isArmor)
+            if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.Armortag == "Boots"){
+                armorimage.sprite = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.icon;
+                armorimage.color = Color.white;
+                //Debug.Log("sprite changed");
+            }
     }
 
     public void OnEndDrag(PointerEventData eventData)

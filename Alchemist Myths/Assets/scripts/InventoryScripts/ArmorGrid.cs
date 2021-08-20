@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemDrop : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class ArmorGrid : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public Image armorimage;
     private Sprite initsprite;
@@ -12,6 +12,7 @@ public class ItemDrop : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
     public Inventory backpack;
     public Item currentEquip;
     private Transform initparent;
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -31,13 +32,12 @@ public class ItemDrop : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
 
     public void OnDrop(PointerEventData eventData)/////////////////
     {
-        if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.itemName.Contains("護甲"))
-        {
-            currentEquip = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem;
-            armorimage.sprite = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.icon;
-            armorimage.color = Color.white;
+        if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.isArmor){
+            if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.Armortag.Contains("Armor")){
+                armorimage.sprite = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.icon;
+                armorimage.color = Color.white;
+            }
         }
-
     }
 
     public void OnEndDrag(PointerEventData eventData)
