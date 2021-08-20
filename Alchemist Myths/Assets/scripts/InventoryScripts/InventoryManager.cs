@@ -7,8 +7,6 @@ public class InventoryManager : MonoBehaviour
 {
     static InventoryManager instance;
     public Inventory backpack;
-    public Inventory playerEquipment;
-    public GameObject ArmorSlot;
     public GameObject slotGrid;
     public GameObject emptyslot;
     public Text description;

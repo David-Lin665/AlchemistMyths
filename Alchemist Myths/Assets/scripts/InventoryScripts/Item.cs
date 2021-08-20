@@ -10,8 +10,17 @@ public class Item : ScriptableObject
     public string description;
     public int itemheld;
     public GameObject itemPrefab;
-    public bool isWeapon;
+
     [Header("Weapon status")]
+    public bool isWeapon;
     public int atk;
-    public int def;
+    public int WeaponEffect;
+    public float attackSpeed;
+    public string Weapontag;
+    
+    [Header("Armor status")]
+    public bool isArmor;
+    public float def;
+    public int ArmorEffect;
+    public string Armortag;
 }

@@ -19,7 +19,6 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         GetComponent<CanvasGroup>().blocksRaycasts = false; // 使他不會擋住raycast
         currentItem = backpack.itemList[currentID];
     }
-
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position; // 拖曳期間持續更新位置
@@ -60,9 +59,9 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 return;
             }
             // 裝備armor
-            if(eventData.pointerCurrentRaycast.gameObject.name == "Armor")
+            if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.isArmor)
             {
-                if(currentItem.itemName.Contains("護甲"))
+                if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.Armortag.Contains("Armor"))
                 {
                     backpack.itemList[currentID] = null;
                     Destroy(gameObject);
