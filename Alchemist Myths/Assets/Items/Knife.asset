@@ -16,4 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d1909d1353a901549be8c4abcc859ebd, type: 3}
   description: "\u9019\u662F\u4E00\u628A\u666E\u901A\u7684\u5C0F\u5200\n"
   itemheld: 1
-  itemPrefab: {fileID: 6288376369860662170, guid: 93a6c68d25ea941459d8d8bb3a3b984e, type: 3}
+  itemPrefab: {fileID: 9075593750981418857, guid: 93a6c68d25ea941459d8d8bb3a3b984e, type: 3}
+  isWeapon: 0
+  atk: 0
+  def: 0
