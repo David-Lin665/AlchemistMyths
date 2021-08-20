@@ -14,7 +14,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         originalParent = transform.parent;// item 的上級是 slot
         currentID = originalParent.GetComponent<Slot>().slotID; //取得先前id
-        transform.SetParent(transform.parent.parent);//點擊時把層級上移到slotgrid避免被擋住
+        transform.SetParent(transform.parent.parent.parent.parent);//點擊時把層級上移到slotgrid避免被擋住
         transform.position = eventData.position; 
         GetComponent<CanvasGroup>().blocksRaycasts = false; // 使他不會擋住raycast
         currentItem = backpack.itemList[currentID];
@@ -59,12 +59,13 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 return;
             }
             // 裝備armor
-            if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.isArmor)
+            if(eventData.pointerCurrentRaycast.gameObject.CompareTag("Armor"))
             {
-                if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.Armortag.Contains("Armor"))
+                if(currentItem.isArmor)
                 {
                     backpack.itemList[currentID] = null;
                     Destroy(gameObject);
+                    InventoryManager.RefreshItem();
                     GetComponent<CanvasGroup>().blocksRaycasts = true;
                     return;
                 }
@@ -78,7 +79,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if(eventData.pointerCurrentRaycast.gameObject == null)
         {
             Destroy(gameObject);
-            Instantiate(backpack.itemList[currentID].itemPrefab,PlayerTracker.playerPosition + new Vector3(5,0,0),Quaternion.identity);
+            Instantiate(backpack.itemList[currentID].itemPrefab,PlayerTracker.playerPosition,Quaternion.identity);
             backpack.itemList[currentID] = null;
             InventoryManager.RefreshItem();
         } 

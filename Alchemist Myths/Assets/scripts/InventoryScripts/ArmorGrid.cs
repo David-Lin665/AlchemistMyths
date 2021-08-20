@@ -19,7 +19,7 @@ public class ArmorGrid : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHa
         initparent = transform.parent;
         if(armorimage.sprite != initsprite)
         {
-            transform.SetParent(transform.parent.parent.parent);
+            transform.SetParent(transform.parent.parent);
             transform.position = eventData.position;
             GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
@@ -30,12 +30,13 @@ public class ArmorGrid : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHa
         transform.position = eventData.position;
     }
 
-    public void OnDrop(PointerEventData eventData)/////////////////
+    public void OnDrop(PointerEventData eventData)
     {
         if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.isArmor){
             if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.Armortag.Contains("Armor")){
                 armorimage.sprite = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.icon;
                 armorimage.color = Color.white;
+                currentEquip = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem;
             }
         }
     }
@@ -51,7 +52,7 @@ public class ArmorGrid : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHa
         }
         if(eventData.pointerCurrentRaycast.gameObject.CompareTag("Slot"))
         {
-            controlZ();
+            BackToInit();
             backpack.itemList[eventData.pointerCurrentRaycast.gameObject.GetComponent<Slot>().slotID] = currentEquip;
             InventoryManager.RefreshItem();
             currentEquip = null;
@@ -60,7 +61,6 @@ public class ArmorGrid : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHa
         }
         if(eventData.pointerCurrentRaycast.gameObject.name == "Backpack")
         {
-            controlZ();
             for(int i = 0; i<backpack.itemList.Count; i++)
             {
                 if(backpack.itemList[i]==null)
@@ -84,7 +84,7 @@ public class ArmorGrid : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHa
         currentEquip = null;
         initColor = armorimage.color;
     }
-    void controlZ()
+    void BackToInit()
     {
         armorimage.sprite = initsprite;
         armorimage.color = initColor;

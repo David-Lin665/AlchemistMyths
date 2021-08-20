@@ -23,4 +23,7 @@ public class Item : ScriptableObject
     public float def;
     public int ArmorEffect;
     public string Armortag;
+
+    [Header("------------")]
+    public bool isEquip;
 }
