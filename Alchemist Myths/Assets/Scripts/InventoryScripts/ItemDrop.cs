@@ -31,8 +31,10 @@ public class ItemDrop : MonoBehaviour, IDropHandler, IDragHandler, IBeginDragHan
 
     public void OnDrop(PointerEventData eventData)
     {
+        Debug.Log("01");
         if(eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.itemName.Contains("護甲"))
         {
+            Debug.Log("OK");
             currentEquip = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem;
             armorimage.sprite = eventData.pointerDrag.gameObject.GetComponent<ItemDrag>().currentItem.icon;
             armorimage.color = Color.white;

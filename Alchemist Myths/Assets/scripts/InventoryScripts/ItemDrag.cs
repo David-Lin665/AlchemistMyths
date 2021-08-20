@@ -18,6 +18,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         transform.position = eventData.position; 
         GetComponent<CanvasGroup>().blocksRaycasts = false; // 使他不會擋住raycast
         currentItem = backpack.itemList[currentID];
+        Debug.Log("OnBeingDrag");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -59,7 +60,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 GetComponent<CanvasGroup>().blocksRaycasts = true;
                 return;
             }
-            // 裝備armor
+            //裝備armor
             if(eventData.pointerCurrentRaycast.gameObject.name == "Armor")
             {
                 if(currentItem.itemName.Contains("護甲"))
@@ -82,6 +83,7 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             Instantiate(backpack.itemList[currentID].itemPrefab,PlayerTracker.playerPosition + new Vector3(5,0,0),Quaternion.identity);
             backpack.itemList[currentID] = null;
             InventoryManager.RefreshItem();
+            Debug.Log("OutWorld");
         } 
     }
     public void ReturnItem()
