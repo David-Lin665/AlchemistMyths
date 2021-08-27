@@ -7,10 +7,12 @@ public class Slot : MonoBehaviour
 {
     public int slotID;
     public Item slotItem;
-    public Image slotImage;
-    public Text slotnum;
-    public GameObject itemInSlot;
-    public string slotInfo;
+    [SerializeField] private Image slotImage;
+    [SerializeField] private GameObject count;
+    [SerializeField] private Text slotnum;
+    [SerializeField] private GameObject itemInSlot;
+    [SerializeField] private string slotInfo;
+    [SerializeField] private bool isEquip;
     public void SlotOnclick()
     {
         InventoryManager.UpdateItemInfo(slotInfo);
@@ -18,6 +20,10 @@ public class Slot : MonoBehaviour
 
     public void SetSlot(Item item)
     {
+        if(isEquip)
+        {
+            count.SetActive(false);
+        }
         // 如果是空格
         if(item == null)
         {

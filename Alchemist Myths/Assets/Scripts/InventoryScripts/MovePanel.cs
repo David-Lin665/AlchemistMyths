@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MoveBag : MonoBehaviour, IDragHandler
+public class MovePanel : MonoBehaviour, IDragHandler
 {
     public RectTransform curruntRect;
 

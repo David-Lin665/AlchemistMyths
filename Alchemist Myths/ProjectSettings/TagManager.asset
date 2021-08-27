@@ -8,6 +8,8 @@ TagManager:
   - Projectile
   - Slot
   - ItemImage
+  - Armor
+  - Boot
   layers:
   - Default
   - TransparentFX

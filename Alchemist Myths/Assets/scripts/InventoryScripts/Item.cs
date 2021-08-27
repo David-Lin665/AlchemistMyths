@@ -14,16 +14,13 @@ public class Item : ScriptableObject
     [Header("Weapon status")]
     public bool isWeapon;
     public int atk;
-    public int WeaponEffect;
+    public int weaponEffect;
     public float attackSpeed;
-    public string Weapontag;
     
     [Header("Armor status")]
     public bool isArmor;
+    public bool isBoots;
     public float def;
-    public int ArmorEffect;
-    public string Armortag;
-
-    [Header("------------")]
-    public bool isEquip;
+    public int armorEffect;
+    
 }
