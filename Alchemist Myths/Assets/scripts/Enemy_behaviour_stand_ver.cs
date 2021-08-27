@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +6,8 @@ public class Enemy_behaviour_stand_ver : MonoBehaviour
 {
     #region Public Variables
     public float attackDistance; //Minimum distance for attack
-    public Transform leftLimit;
-    public Transform rightLimit;
     public float intTimer;
+    public float sleepTimer;
     [HideInInspector] public Transform target;
     [HideInInspector] public bool inRange; //Check if Player is in range
     public GameObject hotZone;
@@ -18,6 +17,7 @@ public class Enemy_behaviour_stand_ver : MonoBehaviour
     #region Private Variables
     private Animator anim;
     private float distance; //Store the distance b/w enemy and player
+    private float intSleepTimer;
     private bool attackMode;
     private bool cooling; //Check if Enemy is cooling after attack
     #endregion
@@ -29,6 +29,7 @@ public class Enemy_behaviour_stand_ver : MonoBehaviour
 
     void Start()
     {
+        intSleepTimer = sleepTimer;
         StartCoroutine(Cool());
     }
 
@@ -43,11 +44,18 @@ public class Enemy_behaviour_stand_ver : MonoBehaviour
         {
             EnemyLogic();
         }
+
+        if (!inRange )
+        {
+            sleepTimerSet();
+        }
     }
 
-
-    void EnemyLogic() //�ϼĤH�P�_�Ӱ�����Ӱʧ@��
+    void EnemyLogic()
     {
+        anim.SetBool("Sleep", false);
+        anim.SetBool("ReadyAwake", true);
+        
         distance = Vector2.Distance(transform.position, target.position);
 
         if (distance > attackDistance)
@@ -56,7 +64,6 @@ public class Enemy_behaviour_stand_ver : MonoBehaviour
         }
         else if (attackDistance >= distance && cooling == false)
         {
-
             Attack();
         }
     }
@@ -65,7 +72,7 @@ public class Enemy_behaviour_stand_ver : MonoBehaviour
     {
         attackMode = true; //To checl if Enemy can still attack or not
 
-        anim.SetBool("canWalk", false);
+        anim.SetBool("Sleep", false);
         anim.SetBool("Attack", true);
     }
 
@@ -77,7 +84,7 @@ public class Enemy_behaviour_stand_ver : MonoBehaviour
             return;
         }
         attackMode = false;
-        anim.SetBool("Attack", false);
+
     }
 
 
@@ -89,8 +96,22 @@ public class Enemy_behaviour_stand_ver : MonoBehaviour
     void sleeping()
     {
         anim.SetBool("Attack",false);
+        anim.SetBool("Sleep", true);
     }
     
+    void sleepTimerSet()
+    {
+        sleepTimer -= Time.deltaTime;
+
+        if(sleepTimer <= 0 && cooling && !attackMode)
+        {
+            cooling = false;
+            sleepTimer = intSleepTimer;
+            anim.SetBool("ReadyAwake" ,true);
+            anim.SetBool("Sleep", true);
+        }
+    }
+
     IEnumerator Cool()
     {
         while (true)
