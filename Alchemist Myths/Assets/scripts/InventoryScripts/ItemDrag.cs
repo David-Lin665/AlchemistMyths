@@ -16,6 +16,9 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         originalParent = transform.parent;// item 的上級是 slot
         currentID = originalParent.GetComponent<Slot>().slotID;//取得先前id 
+        Color newcolor = itemImage.color;
+        newcolor.a = .5f;
+        itemImage.color = newcolor;
         transform.SetParent(transform.parent.parent.parent.parent);//點擊時把層級上移到slotgrid避免被擋住
         transform.position = eventData.position; 
         GetComponent<CanvasGroup>().blocksRaycasts = false; // 使他不會擋住raycast
@@ -28,7 +31,9 @@ public class ItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        Color newcolor = itemImage.color;
+        newcolor.a = 1;
+        itemImage.color = newcolor;
         if(eventData.pointerCurrentRaycast.gameObject == null)
         {
             Destroy(gameObject);

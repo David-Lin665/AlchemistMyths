@@ -197,8 +197,7 @@ MonoBehaviour:
   backpack: {fileID: 11400000, guid: eb64b3f5042a8d345b928571287e46dd, type: 2}
   equipment: {fileID: 11400000, guid: 9975bdf31c5d0314fa8682bb80952e4f, type: 2}
   currentID: 0
-  currentItem: {fileID: 0}
-  isEquip: 0
+  itemImage: {fileID: 4970221348074701023}
 --- !u!225 &4970221348315129362
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -323,9 +322,11 @@ MonoBehaviour:
   slotID: 0
   slotItem: {fileID: 0}
   slotImage: {fileID: 4970221348074701023}
+  count: {fileID: 0}
   slotnum: {fileID: 4970221349855704233}
   itemInSlot: {fileID: 4970221348315129365}
   slotInfo: 
+  isEquip: 0
 --- !u!1 &4970221349855704235
 GameObject:
   m_ObjectHideFlags: 0

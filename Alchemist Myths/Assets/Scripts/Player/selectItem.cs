@@ -10,7 +10,6 @@ public class selectItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //refreshSlots();
         NowHolding();
     }
 
