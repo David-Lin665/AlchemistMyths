@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4b41bed2960db42b44723516686623, type: 3}
+  m_Name: sword
+  m_EditorClassIdentifier: 
+  itemName: "\u55AE\u624B\u528D"
+  icon: {fileID: 21300000, guid: f0ac434b0dfb1354fb5f52247073edaa, type: 3}
+  description: "\u9019\u662F\u4E00\u628A\u666E\u901A\u7684\u55AE\u624B\u528D\n"
+  itemheld: 1
+  itemPrefab: {fileID: 979683295200713798, guid: 9543146f7c692ab428d2e1949e2e4faf, type: 3}
+  isWeapon: 1
+  atk: 10
+  WeaponEffect: 0
+  attackSpeed: 0.5
+  Weapontag: Melee
+  isArmor: 0
+  def: 0
+  ArmorEffect: 0
+  Armortag: 

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e4b41bed2960db42b44723516686623, type: 3}
+  m_Name: Armor
+  m_EditorClassIdentifier: 
+  itemName: "\u9435\u8B77\u7532"
+  icon: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
+  description: "\u9632\u79A6\u529B+5"
+  itemheld: 0
+  itemPrefab: {fileID: 6162982598528045222, guid: a49aad549e2b9134a98022c5b19d79e1, type: 3}
+  isWeapon: 0
+  atk: 0
+  weaponEffect: 0
+  attackSpeed: 0
+  isArmor: 1
+  isBoots: 0
+  def: 5
+  armorEffect: 0
