@@ -142,14 +142,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36b14bf51ecccf48b0a2196d84f939a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 0
-  leftLimit: {fileID: 0}
-  rightLimit: {fileID: 0}
-  intTimer: 0
+  attackDistance: 1
+  intTimer: 2
+  sleepTimer: 5
   target: {fileID: 0}
   inRange: 0
-  hotZone: {fileID: 0}
-  triggerArea: {fileID: 0}
+  hotZone: {fileID: 8422448233521443361}
+  triggerArea: {fileID: 7011455440960563441}
 --- !u!1 &2307391118010485541
 GameObject:
   m_ObjectHideFlags: 0

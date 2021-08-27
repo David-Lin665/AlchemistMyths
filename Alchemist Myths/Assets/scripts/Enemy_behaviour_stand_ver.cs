@@ -87,7 +87,6 @@ public class Enemy_behaviour_stand_ver : MonoBehaviour
 
     }
 
-
     public void TriggerCooling() //�b�g�L�������᪺�N�o
     {
         cooling = true;

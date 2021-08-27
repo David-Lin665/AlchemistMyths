@@ -14606,6 +14606,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 4049441796120583460, guid: d1990b01e68034d4986de2b3155d8823, type: 3}
+      propertyPath: intTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049441796120583460, guid: d1990b01e68034d4986de2b3155d8823, type: 3}
+      propertyPath: sleepTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049441796120583460, guid: d1990b01e68034d4986de2b3155d8823, type: 3}
+      propertyPath: attackDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5197067132412287001, guid: d1990b01e68034d4986de2b3155d8823, type: 3}
       propertyPath: m_RootOrder
       value: 18
