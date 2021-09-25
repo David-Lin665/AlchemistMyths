@@ -37,6 +37,6 @@ public class selectItem : MonoBehaviour
     private void ShowCurrentSelect()
     {
         int a = currentGrid;
-        Debug.Log(slots[a].name);
+        //Debug.Log(slots[a].name);
     }
 }
